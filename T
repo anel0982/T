@@ -1,0 +1,103 @@
+local ScreenGui1 = Instance.new("ScreenGui")
+local ImageButton1 = Instance.new("ImageButton")
+local UICorner = Instance.new("UICorner")
+
+ScreenGui1.Name = "ImageButton"
+ScreenGui1.Parent = game.CoreGui
+ScreenGui1.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+ImageButton1.Parent = ScreenGui1
+ImageButton1.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+ImageButton1.BorderSizePixel = 0
+ImageButton1.Position = UDim2.new(0.120833337, 0, 0.0952890813, 0)
+ImageButton1.Size = UDim2.new(0, 50, 0, 50)
+ImageButton1.Draggable = true
+ImageButton1.Image = "rbxassetid://15814760626"
+ImageButton1.MouseButton1Down:connect(function()
+  game:GetService("VirtualInputManager"):SendKeyEvent(true,"RightShift", false,game)
+  game:GetService("VirtualInputManager"):SendKeyEvent(false,"RightShift", false,game)
+end)
+
+UICorner.Parent = ImageButton1
+
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/anel0982/Orion/main/Hhhbhbbbtest')))()
+local Window = OrionLib:MakeWindow({Name = "Uriel Hub | The Test (Alpha)", HidePremium = false, IntroText = "Gawr Uriel", IntroEnabled = true, SaveConfig = true, ConfigFolder = "OrionTest"})
+
+local Farm = Window:MakeTab({
+	Name = "Farm",
+	Icon = "rbxassetid://7733674079",
+	PremiumOnly = false
+})
+
+local Section = Farm:AddSection({
+	Name = "Auto"
+})
+
+OrionLib:MakeNotification({
+	Name = "Thông báo!!!",
+	Content = "Discord: https://discord.com/invite/c2yRjrdhXR",
+	Image = "rbxassetid://15814760626",
+	Time = 5
+})
+
+Farm:AddToggle({
+	Name = "Auto win mini game",
+	Default = false,
+	Callback = function(Value)
+		if Value then
+local Target = game:GetService("ReplicatedStorage").WonDragMinigame;
+Target:FireServer();
+		else
+	local Target = false
+		end
+	end    
+})
+
+Farm:AddButton({
+	Name = "Win mini game",
+	Callback = function()
+		local Target = game:GetService("ReplicatedStorage").WonDragMinigame;
+Target:FireServer();
+  	end    
+})
+
+Farm:AddTextbox({
+	Name = "person to kill",
+	Default = "",
+	TextDisappear = true,
+	Callback = function(value, focusLost)
+		local userdata_1 = game.Workspace[value] --[[ Parent is "nil" or object is destroyed ]];
+local Target = game:GetService("ReplicatedStorage").Kill;
+Target:FireServer(userdata_1);
+	end	  
+})
+
+Farm:AddTextbox({
+	Name = "person to respawn",
+	Default = "",
+	TextDisappear = true,
+	Callback = function(value, focusLost)
+		local userdata_1 = game:GetService("Players")[value];
+local Target = game:GetService("ReplicatedStorage").RemoteEvents.Playerloadedin;
+Target:FireServer(userdata_1);
+	end	  
+})
+
+local Credit = Window:MakeTab({
+	Name = "Credit",
+	Icon = "rbxassetid://15814760626",
+	PremiumOnly = false
+})
+
+local Section = Credit:AddSection({
+	Name = "Credit"
+})
+
+OrionLib:MakeNotification({
+	Name = "Thông báo!!!",
+	Content = "Discord: https://discord.com/invite/c2yRjrdhXR",
+	Image = "rbxassetid://15814760626",
+	Time = 5
+})
+
+Credit:AddParagraph("!Thông Báo!","Script được tạo bởi Gawr Uriel -Script có Auto win, Có Respawm player, Có Kill player")
